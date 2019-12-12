@@ -1,0 +1,204 @@
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {
+  border: 3px solid #f1f1f1;
+
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+/* Full-width inputs */
+input[type=text], input[type=password],select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: purple;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 10%;
+  border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+ /* margin-right: 200px;
+ margin-left: 200px; */
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+} 
+</style>
+           
+</head>
+<body>
+
+              <form [formGroup]="userForm" (ngSubmit)="submit()" style="margin-left: 150px; margin-right: 150px; margin-top: 10px; margin-bottom: 100px" >
+                    <div class="imgcontainer">
+                      <img src="../../assets/img_avatar2.png" alt="Avatar" class="avatar">
+                    </div>
+                    <div class="container">
+                    <div class="form-group" [ngClass]="{'has-error': userForm.get('name').errors && (userForm.get('name').touched || userForm.get('name').dirty)}"> <!-- First Name -->
+                        <label for="name" class="control-label">Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" required >
+                        <span class="help-block" *ngIf="userForm.get('name').errors && (userForm.get('name').touched || userForm.get('name').dirty)">
+                          <span *ngIf="userForm.get('name').errors.required" class="text-danger">
+                            Name is required.
+                          </span>
+                          <span *ngIf="userForm.get('name').errors.pattern" class="text-danger">
+                            Name can only be alphabets.
+                          </span>
+                          <span *ngIf="userForm.get('name').errors.minlength" class="text-danger">
+                              Name must be at least 3 chcaracters long.
+                            </span>
+                        </span>
+                      </div>
+                      <div class="form-group" [ngClass]="{'has-error': userForm.get('email').errors && (userForm.get('email').touched || userForm.get('email').dirty)}"> 
+                         <!-- Email -->
+                        <label for="email" class="control-label">Email ID</label>
+                        <input type="text" class="form-control" id="email" formControlName="email">
+                        <p id="hide-email" style="display: none;color:#f44336">Account with email ID already exists.</p>
+                        <span class="help-block" *ngIf="userForm.get('email').errors && (userForm.get('email').touched || userForm.get('email').dirty)">
+                          <span *ngIf="userForm.get('email').errors.required" class="text-danger">
+                            Email is required.
+                          </span>
+                          <span *ngIf="userForm.get('email').errors.email" class="text-danger">
+                              Incorrect email format.
+                            </span>
+                        </span>
+                      </div> 
+                      <div class="form-group"> <!-- Account number -->
+                        <label for="acc_no" class="control-label">Account number</label>
+                        <input type="text" class="form-control" id="acc_no" formControlName="acc_no" maxlength="10" [ngClass]="{'is-invalid': userForm.get('acc_no').touched && userForm.get('acc_no').invalid}">
+                        <p id="hide-acc_no" style="display: none;color:#f44336">Account number already exists.</p>
+                        <span class="help-block" *ngIf="userForm.get('acc_no').touched && userForm.get('acc_no').invalid">
+                          <span *ngIf="userForm.get('acc_no').errors.pattern" class="text-danger">
+                            Account number can only be numbers.
+                          </span>
+                          <span *ngIf="userForm.get('acc_no').errors.required" class="text-danger">
+                              Account number is required.
+                            </span>
+                          <span *ngIf="userForm.get('acc_no').errors.minlength" class="text-danger">
+                              Account number must be 10 digits.
+                            </span>
+                        </span>
+                      </div>
+                      <div class="form-group"> <!-- Account type-->
+                        <label for="acc" class="control-label">Account type</label><br/>
+                        <select class="form-control" id="acc" formControlName="acc" [ngClass]="{'is-invalid': userForm.get('acc').touched && userForm.get('acc').invalid}">
+                            <option value="Savings" selected>Savings</option>
+                            <option value="Current">Current</option>
+                        </select>
+                        <span class="help-block" *ngIf=" userForm.get('acc').touched && userForm.get('acc').invalid">
+                          <span *ngIf="userForm.get('acc').errors.required" class="text-danger">
+                            Account type not selected.
+                          </span>
+                        </span>
+                      </div>   
+                      <div class="form-group"> <!-- Acc balance -->
+                        <label for="balance" class="control-label">Account Balance</label>
+                        <input type="number" class="form-control" id="balance" formControlName="balance" required [ngClass]="{'is-invalid': userForm.get('balance').touched && userForm.get('balance').invalid}" >
+                        <span class="help-block" *ngIf="userForm.get('balance').touched && userForm.get('balance').invalid">
+                            <span *ngIf="userForm.get('balance').errors.required" class="text-danger">
+                              Account balance is required
+                            </span>
+                          </span>
+                      </div>
+                      <div class="form-group"> <!-- Password -->
+                        <label for="password" class="control-label">Password</label> 
+                        <input type="password" class="form-control" id="password" formControlName="password" required minlength="8" [ngClass]="{'is-invalid': userForm.get('password').touched && userForm.get('password').invalid}">
+                        <p id="hide-password" style="display: none;color:#f44336">Passwords do not match!</p>
+                        <span class="help-block" *ngIf="userForm.get('password').touched && userForm.get('password').invalid">
+                            <span *ngIf="userForm.get('password').errors.required" class="text-danger">
+                              Enter a password.
+                            </span>
+                            <span *ngIf="userForm.get('password').errors.minlength" class="text-danger">
+                                Password must be minimum 8 characters.                            </span>
+                          </span>
+                      </div>
+
+                      <div class="form-group"> <!-- CHeck Password -->
+                        <label for="password1" class="control-label">Retype Password</label>
+                        <input type="password" class="form-control" id="password1" formControlName="password1" required minlength="8" [ngClass]="{'is-invalid': userForm.get('password1').touched && userForm.get('password1').invalid}">
+                        <span class="help-block" *ngIf="userForm.get('password1').touched && userForm.get('password1').invalid">
+                            <span *ngIf="userForm.get('password1').errors.required" class="text-danger">
+                              Reenter password.
+                            </span>
+                            <span *ngIf="userForm.get('password').value != userForm.get('password1').value && userForm.get('password').value != '' && userForm.get('password1').value != ''" class="text-danger">
+                                Passwords do not match.
+                              </span>
+                              <span *ngIf="userForm.get('password').value == userForm.get('password1').value && userForm.get('password').value != '' && userForm.get('password1').value != ''" class="text-success">
+                                  Passwords match.
+                                </span>
+
+                          </span>
+                      </div>
+
+                      
+                      <div class="form-group"> <!-- Register Button -->
+                        <button type="submit" class="btn btn-primary" style="background: rgb(190, 63, 180); color:#fff">Sign up</button>
+                      </div>
+                    </div>
+                  
+                    <div class="container" style="background-color:#f1f1f1">
+                      <button type="button" class="cancelbtn" [routerLink]="['/']">Cancel</button>
+                    </div>
+                  </form>
+        
+</body>
+</html>
+

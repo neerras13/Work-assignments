@@ -1,0 +1,145 @@
+<html>
+<head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+form {
+  border: 3px solid #f1f1f1;
+
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: purple;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 10%;
+  border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 10px;
+ /* margin-right: 200px;
+ margin-left: 200px; */
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+} 
+</style>
+           
+</head>
+<body>
+
+              <form [formGroup]="userForm" (ngSubmit)="submit()" style="margin-left: 170px; margin-right: 170px; margin-top: 135px; margin-bottom: 135px" >
+                <br/><h2 align="center"
+                style="    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+                ">Welcome to ABC Bank. Login to proceed. </h2>
+                    <div class="imgcontainer">
+                      <img src="../../assets/img_avatar2.png" alt="Avatar" class="avatar">
+                    </div>
+                    <div class="container">
+                    <div class="form-group"> <!-- First Name -->
+                        <label for="uid" class="control-label">ID</label>
+                        <input type="text" class="form-control" id="uid" formControlName="uid" required>
+                      </div>  
+                      <div class="form-group"> <!-- Password -->
+                        <label for="password" class="control-label">Password</label>
+                        <input type="password" class="form-control" id="password" formControlName="password" required>
+                        <p id="hide-password" style="display: none;color:#f44336">Password incorrect.</p>
+                      </div>
+                      
+                      <div class="form-group"> <!-- Register Button -->
+                        <button type="submit" class="btn btn-primary" style="background: rgb(190, 63, 180); color:#fff" [disabled]="!userForm.valid">Log In</button>
+                      </div>
+                    </div>
+                  
+                    <div class="container" style="background-color:#fff; width:auto" >
+                      <button type="button" class="cancelbtn" style="visibility: hidden">Cancel</button>
+                      <span class="psw"><a [routerLink]="['/signup']" style="color:rgb(190, 63, 180)">New user? Sign up!&nbsp;</a></span>
+                      <span class="psw"><a [routerLink]="['/signup']" style="color:rgb(190, 63, 180)">Forgot Password? &nbsp;&nbsp;</a></span>
+                    </div>
+                  </form>
+
+                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="button" [hidden]="true">Open Modal</button>
+
+                  <!-- Modal -->
+                  <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                  
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header" style="background:rgba(147, 81, 173, 0.7)">
+                          <button type="button" class="close" data-dismiss="modal" style="float: right" [hidden]="true">&times;</button>
+                          <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body">
+                          <br/><br/>
+                          <h4 align="center"><p>Looks like you are not registered with us! Try again or register.</p></h4><br/>
+                          <a [routerLink]="['/signup']" data-dismiss="modal" align="center"><h5 style="color:rgba(147, 81, 173, 0.7)">Sign Up here</h5></a>
+          
+                        </div>
+                        <div class="modal-footer">
+          
+                          <input type="button" class="btn btn-default" data-dismiss="modal" style="background: rgba(147, 81, 173, 0.7); color:#fff" value="Close">
+                        </div>
+                      </div>
+                  
+                    </div>
+              </div>
+
+ 
+</body>
+</html>
