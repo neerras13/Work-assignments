@@ -1,0 +1,20 @@
+<div *ngFor="let item of data">
+<mat-card class= "example-card">
+    <mat-card-header>
+        <mat-card-subtitle>
+            <span>{{item.subject}}</span>
+            <span style="float: right;">{{item.date}}</span>
+        </mat-card-subtitle>
+        <mat-card-title> {{item.topic}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="content-container">
+      <p>{{item.description}}</p>
+    </mat-card-content>
+    <mat-card-footer class="footer-container">
+        <mat-card-subtitle>
+            <span>Status</span>
+            <span style="float: right;">Grade</span>
+        </mat-card-subtitle>
+    </mat-card-footer>
+  </mat-card>
+</div>

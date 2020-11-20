@@ -1,0 +1,21 @@
+.example-card {
+    max-width: 370px;
+    min-height: 200px;
+    margin: 20px;
+    float: left;
+    
+  }
+  mat-card::ng-deep.mat-card-header-text, mat-card::ng-deep.mat-card-footer-text {
+    width: 100%;
+  }
+
+  .footer-container{
+    align-content: flex-end;
+    padding-left: 35px; 
+    padding-right: 35px;
+  }
+
+  .content-container{
+    padding-left: 20px; 
+    padding-right: 20px;
+  }
