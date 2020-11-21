@@ -1,0 +1,34 @@
+mat-card {
+    width: calc(50% - 70px);
+    height: calc(50% - 70px);
+    margin-left: 20px;
+    float: left;
+  }
+
+mat-card-subtitle{
+      color: darkblue;
+  }
+
+mat-card-title{
+    font-size: large
+}
+
+mat-flat-button{
+    display: inline-block;
+    color: blue;
+    width: 100%;
+}
+
+.text-section{
+    float:left; 
+    width: 27%;
+}
+
+.button-section{
+    float:left; 
+    width: 19%;
+}
+
+.button{
+    display: inline-block; width: 100%
+}
